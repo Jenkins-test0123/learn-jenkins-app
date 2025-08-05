@@ -11,11 +11,20 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo "📁 Listing current directory:"
                     ls -la
+
+                    echo "📦 Node & NPM versions:"
                     node --version
                     npm --version
-                    npm ci
-                    npm run build
+
+                    echo "📦 Running npm ci..."
+                    npm ci --loglevel=verbose
+
+                    echo "⚙️ Running build..."
+                    npm run build --loglevel=verbose
+
+                    echo "📁 Final directory state:"
                     ls -la
                 '''
             }
